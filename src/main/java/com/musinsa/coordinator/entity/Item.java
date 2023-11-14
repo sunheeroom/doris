@@ -5,11 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Item {
@@ -18,15 +20,14 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String category;
-
     String brand;
+    String category;
 
     Integer price;
 
-    public Item(String category, String brand, Integer price) {
-        this.category = category;
+    public Item(String brand, String category, Integer price) {
         this.brand = brand;
+        this.category = category;
         this.price = price;
     }
 }
