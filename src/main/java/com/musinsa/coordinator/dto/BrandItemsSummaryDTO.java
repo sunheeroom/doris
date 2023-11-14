@@ -23,6 +23,10 @@ public class BrandItemsSummaryDTO {
         this.totalprice = 0;
     }
 
+    public BrandItemsSummaryDTO(Item item) {
+
+    }
+
     public void addItems(Item item) {
         if (this.brand == null) {
             this.brand = item.getBrand();

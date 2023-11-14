@@ -8,12 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CategoryPriceDTO {
-    String category;
+public class BrandPriceDTO {
+    String brand;
     Integer price;
 
-    public CategoryPriceDTO(Item item) {
-        this.category = item.getCategory();
+    public BrandPriceDTO(Item item) {
+        this.brand = item.getBrand();
         this.price = item.getPrice();
     }
 }

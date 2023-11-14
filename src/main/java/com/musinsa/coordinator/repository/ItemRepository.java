@@ -4,6 +4,7 @@ import com.musinsa.coordinator.entity.Item;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -15,8 +16,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
         + "     SELECT i.category, min(i.price) "
         + "     FROM Item i"
         + "     GROUP BY i.category)")
-
-    public List<Item> findItemsWithMinPriceByCategory();
+    List<Item> findItemsWithMinPriceByCategory();
 
     @Query("SELECT i "
         + "FROM Item i "
@@ -30,5 +30,12 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
         + "     GROUP BY i3.brand "
         + "     ORDER BY SUM(i3.price) ASC "
         + "     LIMIT 1)")
-    public List<Item> findItemsWithMinTotalPriceByBrand();
+    List<Item> findItemsWithMinTotalPriceByBrand();
+
+    @Query("SELECT i FROM Item i WHERE i.category = :category AND i.price = (SELECT MIN(i2.price) FROM Item i2 WHERE i2.category = :category)")
+    List<Item> findItemsWithMinPriceByCategory(@Param("category") String category);
+
+    @Query("SELECT i FROM Item i WHERE i.category = :category AND i.price = (SELECT MAX(i2.price) FROM Item i2 WHERE i2.category = :category)")
+    List<Item> findItemsWithMaxPriceByCategory(@Param("category") String category);
 }
+
