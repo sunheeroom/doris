@@ -38,6 +38,10 @@ public class BrandItemsSummaryDTO {
         this.categoryPriceList.add(new CategoryPriceDTO(item.getCategory(), item.getPrice()));
         this.totalprice += item.getPrice();
     }
+
+    public List<CategoryPriceDTO> getItems() {
+        return this.categoryPriceList;
+    }
 }
 
 
