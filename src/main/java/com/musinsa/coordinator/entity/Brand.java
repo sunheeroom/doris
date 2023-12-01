@@ -17,24 +17,20 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class Brand {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @NotNull
-    String brand;
-    @NotNull
-    String category;
-    @NotNull
-    int price;
 
-    public Item(String brand, String category, Integer price, boolean deleted) {
-        this.brand = brand;
-        this.category = category;
-        this.price = price;
-        this.deleted = deleted;
-    }
+    @NotNull
+    String name;
 
     @NotNull
     boolean deleted;
+
+    public Brand(String name) {
+        this.name = name;
+        this.deleted = false;
+    }
 }
